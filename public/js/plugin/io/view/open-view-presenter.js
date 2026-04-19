@@ -3,7 +3,8 @@ define(function(require) {
     var Protoplast = require('protoplast'),
         BaseSectionViewPresenter = require('theme/aw-bubble/presenter/base-section-view-presenter'),
         IoModel = require('plugin/io/model/io-model'),
-        OpenController = require('plugin/io/controller/open-controller');
+        OpenController = require('plugin/io/controller/open-controller'),
+        ClawApiController = require('plugin/io/controller/claw-api-controller');
 
     /**
      * @extends BaseSectionViewPresenter
@@ -16,6 +17,10 @@ define(function(require) {
         
         openController: {
             inject: OpenController
+        },
+
+        clawApiController: {
+            inject: ClawApiController
         },
 
         ioModel: {
@@ -32,6 +37,7 @@ define(function(require) {
             this.view.on('open-last-used', this._openLastUsed);
             this.view.on('open-file', this._openFile);
             this.view.on('open-file-dialog', this._openFileDialog);
+            this.view.on('open-from-claw', this._openFromClaw);
             this.view.on('open-from-dropbox', this._openFromDropbox);
             this.view.on('open-from-google-drive', this._openFromGoogleDrive);
         },
@@ -66,10 +72,20 @@ define(function(require) {
             this.openController.openFile(selectedFile);
         },
         
+        _openFromClaw: function() {
+            var self = this;
+            this.clawApiController.openFromClaw(function(err, content) {
+                if (!err && content) {
+                    self.openController._setScript(content);
+                    self.pub('plugin/io/opened-from-claw');
+                }
+            });
+        },
+
         _openFromDropbox: function() {
             this.openController.openFromDropbox();
         },
-        
+
         _openFromGoogleDrive: function() {
             this.openController.openFromGoogleDrive();
         }

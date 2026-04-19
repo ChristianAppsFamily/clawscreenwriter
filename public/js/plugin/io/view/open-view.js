@@ -25,6 +25,8 @@ define(function(require) {
 
         $openLocalFile: null,
 
+        $openClawFile: null,
+
         $openDropboxFile: null,
 
         $openGoogleDriveFile: null,
@@ -54,6 +56,7 @@ define(function(require) {
             });
             
             this.$lastUsedTitle.click(self.dispatch.bind(this, 'open-last-used'));
+            this.$openClawFile.click(self.dispatch.bind(this, 'open-from-claw'));
             this.$openDropboxFile.click(self.dispatch.bind(this, 'open-from-dropbox'));
             this.$openGoogleDriveFile.click(self.dispatch.bind(this, 'open-from-google-drive'));
 

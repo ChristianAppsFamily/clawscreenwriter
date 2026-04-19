@@ -25,7 +25,11 @@ define(function(require) {
         gdParents: null,
         
         gdPdfParents: null,
-        
+
+        clawDocumentId: null,
+
+        clawProjectId: null,
+
         /**
          * @type {LastUsedInfo}
          */

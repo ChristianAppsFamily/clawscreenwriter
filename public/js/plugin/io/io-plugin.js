@@ -6,6 +6,7 @@ define(function(require) {
         OpenController = require('plugin/io/controller/open-controller'),
         SaveController = require('plugin/io/controller/save-controller'),
         SaveMobileController = require('plugin/io/controller/save-mobile-controller'),
+        ClawApiController = require('plugin/io/controller/claw-api-controller'),
         MobileScriptSettings = require('plugin/io/model/mobile-script-settings'),
         MobileScriptModel = require('plugin/io/model/mobile-script-model');
 
@@ -16,6 +17,7 @@ define(function(require) {
             context.register(OpenController.create());
             context.register(SaveController.create());
             context.register(SaveMobileController.create());
+            context.register(ClawApiController.create());
             context.register(MobileScriptModel.create());
             context.register(MobileScriptSettings.create());
             context.register(IoModel.create());

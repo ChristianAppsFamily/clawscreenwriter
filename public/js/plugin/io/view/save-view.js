@@ -20,6 +20,8 @@ define(function(require) {
 
         $saveFountainLocally: null,
 
+        $saveFountainClaw: null,
+
         $saveFountainDropbox: null,
 
         $saveFountainGoogleDrive: null,
@@ -42,6 +44,7 @@ define(function(require) {
         addInteractions: function() {
 
             this.$saveFountainLocally.click(this.dispatch.bind(this, 'save-as-fountain'));
+            this.$saveFountainClaw.click(this.dispatch.bind(this, 'claw-fountain'));
             this.$saveFountainDropbox.click(this.dispatch.bind(this, 'dropbox-fountain'));
             this.$saveFountainGoogleDrive.click(this.dispatch.bind(this, 'google-drive-fountain'));
 
